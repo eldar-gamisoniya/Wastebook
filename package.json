@@ -1,0 +1,31 @@
+{
+  "name": "wastebook",
+  "version": "1.0.0",
+  "description": "Test social network",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eldar-gamisoniya/Wastebook.git"
+  },
+  "author": "Eldar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eldar-gamisoniya/Wastebook/issues"
+  },
+  "homepage": "https://github.com/eldar-gamisoniya/Wastebook#readme",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "html-loader": "^0.5.0",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
