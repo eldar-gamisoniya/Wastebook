@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 const PATHS = {
   client: path.join(__dirname, 'client'),
@@ -16,6 +17,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+  },
+  devServer: {
+    hotOnly: true,
   },
   module: {
     rules: [
@@ -49,5 +53,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(PATHS.client, 'index.html'),
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
   ],
 };
