@@ -24,6 +24,7 @@ module.exports = {
   devServer: {
     hotOnly: true,
   },
+  devtool: 'cheap-module-inline-source-map',
   module: {
     rules: [
       {

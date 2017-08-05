@@ -9,7 +9,9 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    import('./AsyncComponent').then(this.handleComponentLoad);
+    setTimeout(() => {
+      import('./AsyncComponent').then(this.handleComponentLoad);
+    }, 5000);
   }
 
   handleComponentLoad = (module) => {
@@ -23,7 +25,7 @@ class App extends React.Component {
 
     return (
       <div>
-        Hi, everybody
+        Hi, everybody!
         { AsyncComponent ? <AsyncComponent /> : (<div>Loading...</div>) }
       </div>
     );
