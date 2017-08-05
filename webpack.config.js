@@ -9,7 +9,10 @@ const PATHS = {
 
 module.exports = {
   entry: {
-    app: path.join(PATHS.client, 'index.jsx'),
+    app: [
+      'babel-polyfill',
+      path.join(PATHS.client, 'index.jsx'),
+    ],
   },
   output: {
     path: PATHS.build,
@@ -23,6 +26,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        parser: {
+          requireEnsure: false,
+        },
+      },
       {
         test: /\.(js|jsx)$/,
         enforce: 'pre',
