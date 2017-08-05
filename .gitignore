@@ -1,4 +1,5 @@
 build
+**/jsconfig.json
 
 # Logs
 logs
