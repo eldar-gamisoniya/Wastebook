@@ -4,7 +4,7 @@
   "description": "Test social network",
   "main": "server/index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dashboard -- webpack-dev-server",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -37,6 +37,7 @@
     "html-loader": "^0.5.0",
     "html-webpack-plugin": "^2.30.1",
     "webpack": "^3.4.1",
+    "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {

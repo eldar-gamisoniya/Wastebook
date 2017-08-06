@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const paths = require('./parts/paths');
 
@@ -56,6 +57,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new DashboardPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(paths.clientAppPath, 'index.html'),
     }),
