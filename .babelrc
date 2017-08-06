@@ -14,7 +14,8 @@
         ["transform-react-remove-prop-types", {
           "mode": "remove",
           "removeImport": true
-        }]
+        }],
+        "react-hot-loader/babel"
       ]
     }
   }

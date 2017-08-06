@@ -9,6 +9,7 @@ module.exports = {
   entry: {
     app: [
       'babel-polyfill',
+      'react-hot-loader/patch',
       path.join(paths.clientAppPath, 'index.jsx'),
     ],
   },
