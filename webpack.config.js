@@ -1,68 +1,8 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const isProduction = process.env.NODE_ENV === 'production';
 
-const PATHS = {
-  client: path.join(__dirname, 'client'),
-  build: path.join(__dirname, 'build'),
-};
+if (isProduction) {
+  module.exports = require('./scripts/webpack.config.prod'); // eslint-disable-line global-require
+  return;
+}
 
-module.exports = {
-  entry: {
-    app: [
-      'babel-polyfill',
-      path.join(PATHS.client, 'index.jsx'),
-    ],
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js',
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json'],
-  },
-  devServer: {
-    hotOnly: true,
-  },
-  devtool: 'cheap-module-inline-source-map',
-  module: {
-    rules: [
-      {
-        parser: {
-          requireEnsure: false,
-        },
-      },
-      {
-        test: /\.(js|jsx)$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          emitWarning: true,
-        },
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-          },
-        },
-      },
-      {
-        test: /\.html$/,
-        use: {
-          loader: 'html-loader',
-        },
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(PATHS.client, 'index.html'),
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-  ],
-};
+module.exports = require('./scripts/webpack.config.dev');
