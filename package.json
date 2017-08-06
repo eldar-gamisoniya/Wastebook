@@ -4,7 +4,7 @@
   "description": "Test social network",
   "main": "server/index.js",
   "scripts": {
-    "start": "webpack-dashboard -- webpack-dev-server",
+    "start": "cross-env NODE_ENV=development node server/index.js",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,6 +30,8 @@
     "babel-plugin-universal-import": "^1.2.5",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "cross-env": "^5.0.4",
     "css-loader": "^0.28.4",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.1.0",
@@ -38,19 +40,25 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "extract-css-chunks-webpack-plugin": "^2.0.16",
     "html-webpack-plugin": "^2.30.1",
     "postcss-loader": "^2.0.6",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.4.1",
-    "webpack-dashboard": "^0.4.0",
-    "webpack-dev-server": "^2.6.1"
+    "style-loader": "^0.18.2"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "express": "^4.15.3",
+    "history": "^4.6.3",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
-    "react-universal-component": "^2.3.2"
+    "react-universal-component": "^2.3.2",
+    "webpack": "^3.4.1",
+    "webpack-dashboard": "^0.4.0",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-flush-chunks": "^1.1.18",
+    "webpack-hot-middleware": "^2.18.2",
+    "webpack-hot-server-middleware": "^0.1.0"
   }
 }
