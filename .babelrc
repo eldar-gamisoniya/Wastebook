@@ -15,7 +15,8 @@
           "mode": "remove",
           "removeImport": true
         }],
-        "react-hot-loader/babel"
+        "react-hot-loader/babel",
+        "universal-import"
       ]
     }
   }
