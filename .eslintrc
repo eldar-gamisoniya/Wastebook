@@ -7,5 +7,11 @@
     "browser": true,
     "node": true
   },
-  "extends": "airbnb"
+  "plugins": [
+    "css-modules"
+  ],
+  "extends": [
+    "plugin:css-modules/recommended",
+    "airbnb"
+  ]
 }
