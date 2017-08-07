@@ -6,7 +6,9 @@
   "plugins": [
     "syntax-dynamic-import",
     "transform-class-properties",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "react-hot-loader/babel",
+    "universal-import"
   ],
   "env": {
     "production": {
@@ -14,8 +16,7 @@
         ["transform-react-remove-prop-types", {
           "mode": "remove",
           "removeImport": true
-        }],
-        "react-hot-loader/babel"
+        }]
       ]
     }
   }

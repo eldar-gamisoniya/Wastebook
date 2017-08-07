@@ -1,36 +1,16 @@
 import React from 'react';
+import universal from 'react-universal-component';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      asyncComponent: null,
-    };
-  }
+const UniversalComponent = universal(() => import('./AsyncComponent'), {
+  loading: <div>Loading...</div>,
+});
 
-  async componentDidMount() {
-    setTimeout(() => {
-      import('./AsyncComponent').then(this.handleComponentLoad);
-    }, 5000);
-  }
-
-  handleComponentLoad = (module) => {
-    this.setState(() => ({
-      asyncComponent: module.default,
-    }));
-  }
-
-  render() {
-    const AsyncComponent = this.state.asyncComponent;
-
-    return (
-      <div>
-        Hi, everybody!
-        { AsyncComponent ? <AsyncComponent /> : (<div>Loading...</div>) }
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    Hi, everybody!
+    <UniversalComponent />
+  </div>
+);
 
 export default App;
