@@ -1,7 +1,9 @@
 {
   "presets": [
-    ["env", { "modules": false }],
-    "react"
+    "react",
+    ["env", { "modules": false, "useBuiltIns": true, "targets": {
+      "browsers": "last 1 version"
+    }}]
   ],
   "plugins": [
     "syntax-dynamic-import",
@@ -12,6 +14,8 @@
   ],
   "env": {
     "production": {
+      "presets": [
+      ],
       "plugins": [
         ["transform-react-remove-prop-types", {
           "mode": "remove",

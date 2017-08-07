@@ -2,6 +2,8 @@ buildClient
 buildServer
 **/jsconfig.json
 
+.DS_Store
+
 # Logs
 logs
 *.log

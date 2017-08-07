@@ -8,7 +8,6 @@ module.exports = {
   name: 'client',
   target: 'web',
   entry: [
-    'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
     'react-hot-loader/patch',
     path.join(paths.clientAppPath, 'index.js'),

@@ -1,4 +1,3 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const paths = require('./parts/paths');
 
@@ -52,7 +51,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin([paths.serverOutputPath]),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),

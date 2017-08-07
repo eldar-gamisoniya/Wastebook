@@ -1,7 +1,7 @@
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
+const BabiliPlugin = require('babili-webpack-plugin');
 const webpack = require('webpack');
 
 const paths = require('./parts/paths');
@@ -10,7 +10,6 @@ module.exports = {
   name: 'client',
   target: 'web',
   entry: [
-    'babel-polyfill',
     path.join(paths.clientAppPath, 'index.js'),
   ],
   output: {
@@ -36,12 +35,12 @@ module.exports = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          emitWarning: true,
+          failOnWarning: true,
+          failOnError: true,
         },
       },
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -70,7 +69,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin([paths.clientOutputPath]),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     // seems to be smaller in gzipped version than HashedModuleIdsPlugin
     new webpack.NamedModulesPlugin(),
     new StatsPlugin('stats.json'),
@@ -80,26 +81,6 @@ module.exports = {
       filename: '[name].js',
       minChunks: Infinity,
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      parallel: {
-        cache: true,
-        workers: 2,
-      },
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      mangle: {
-        screw_ie8: true,
-      },
-      output: {
-        screw_ie8: true,
-        comments: false,
-      },
-      sourceMap: true,
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
+    new BabiliPlugin(),
   ],
 };
