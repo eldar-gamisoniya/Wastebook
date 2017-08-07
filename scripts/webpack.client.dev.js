@@ -1,7 +1,6 @@
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const webpack = require('webpack');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const paths = require('./parts/paths');
 
@@ -70,7 +69,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const StatsPlugin = require('stats-webpack-plugin');
 const webpack = require('webpack');
 
 const paths = require('./parts/paths');
@@ -72,6 +73,7 @@ module.exports = {
     new CleanWebpackPlugin([paths.clientOutputPath]),
     // seems to be smaller in gzipped version than HashedModuleIdsPlugin
     new webpack.NamedModulesPlugin(),
+    new StatsPlugin('stats.json'),
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['bootstrap'],

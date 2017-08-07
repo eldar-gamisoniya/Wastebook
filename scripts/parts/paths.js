@@ -9,14 +9,15 @@ if (!fs.existsSync(path.join(rootPath, 'package.json'))) {
 }
 
 const serverAppPath = path.join(rootPath, 'server');
+const clientOutputPath = path.join(rootPath, 'buildClient');
 
 module.exports = {
   clientAppPath: path.join(rootPath, 'client'),
-  clientOutputPath: path.join(rootPath, 'clientBuild'),
+  clientOutputPath,
   publicPath: '/static/',
   rootPath,
   npmModulesPath: path.join(rootPath, 'npm_modules'),
   serverAppPath,
   serverRenderPath: path.join(serverAppPath, 'render.js'),
-  serverOutputPath: path.join(rootPath, 'serverBuild'),
+  serverOutputPath: path.join(rootPath, 'buildServer'),
 };

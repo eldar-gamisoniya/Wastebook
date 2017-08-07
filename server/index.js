@@ -1,16 +1,13 @@
 const express = require('express');
+const path = require('path');
 const webpack = require('webpack'); // aliased to webpack-universal
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const clientConfig = require('../scripts/webpack.client.dev');
 const serverConfig = require('../scripts/webpack.server.dev');
-const clientConfigProd = require('../scripts/webpack.client.prod');
-const serverConfigProd = require('../scripts/webpack.server.prod');
 
 const publicPath = clientConfig.output.publicPath;
-const outputPath = clientConfig.output.path;
 const isDevelopment = process.env.NODE_ENV === 'development';
 const app = express();
 
@@ -26,7 +23,6 @@ const done = () =>
 if (isDevelopment) {
   const compiler = webpack([clientConfig, serverConfig]);
   const clientCompiler = compiler.compilers[0];
-  clientCompiler.apply(new DashboardPlugin());
   const options = { publicPath, stats: { colors: true } };
 
   app.use(webpackDevMiddleware(compiler, options));
@@ -35,13 +31,9 @@ if (isDevelopment) {
 
   compiler.plugin('done', done);
 } else {
-  webpack([clientConfigProd, serverConfigProd]).run((err, stats) => {
-    const clientStats = stats.toJson().children[0];
-    const serverRender = require('../buildServer/main.js').default;
-
-    app.use(publicPath, express.static(outputPath));
-    app.use(serverRender({ clientStats }));
-
-    done();
-  });
+  const clientStats = require('../buildClient/stats.json'); // es
+  const serverRender = require('../buildServer/main.js').default;
+  app.use(publicPath, express.static('../buildClient'));
+  app.use(serverRender({ clientStats }));
+  done();
 }
