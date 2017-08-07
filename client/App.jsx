@@ -4,7 +4,6 @@ import './App.css';
 
 const UniversalComponent = universal(() => import('./AsyncComponent'), {
   loading: <div>Loading...</div>,
-  minDelay: 5000,
 });
 
 const App = () => (

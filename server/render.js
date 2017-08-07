@@ -16,7 +16,7 @@ export default ({ clientStats }) => (req, res) => {
     stylesheets,
   } = flushChunks(clientStats, { chunkNames });
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     console.log('PATH', req.path);
     console.log('DYNAMIC CHUNK NAMES RENDERED', chunkNames);
     console.log('SCRIPTS SERVED', scripts);

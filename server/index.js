@@ -8,7 +8,7 @@ const clientConfig = require('../scripts/webpack.client.dev');
 const serverConfig = require('../scripts/webpack.server.dev');
 
 const publicPath = clientConfig.output.publicPath;
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 
 let isBuilt = false;
@@ -20,7 +20,7 @@ const done = () =>
     console.log('BUILD COMPLETE -- Listening @ http://localhost:3000');
   });
 
-if (isDevelopment) {
+if (!isProduction) {
   const compiler = webpack([clientConfig, serverConfig]);
   const clientCompiler = compiler.compilers[0];
   const options = { publicPath, stats: { colors: true } };
@@ -31,9 +31,9 @@ if (isDevelopment) {
 
   compiler.plugin('done', done);
 } else {
-  const clientStats = require('../buildClient/stats.json'); // es
+  const clientStats = require('../buildClient/stats.json');
   const serverRender = require('../buildServer/main.js').default;
-  app.use(publicPath, express.static('../buildClient'));
+  app.use(publicPath, express.static(path.join(__dirname, '../buildClient')));
   app.use(serverRender({ clientStats }));
   done();
 }
