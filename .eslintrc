@@ -4,8 +4,7 @@
     "sourceType": "module"
   },
   "env": {
-    "browser": true,
-    "node": true
+    "browser": true
   },
   "plugins": [
     "css-modules"

@@ -4,10 +4,10 @@ const webpack = require('webpack'); // aliased to webpack-universal
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-const clientConfig = require('../scripts/webpack.client.dev');
-const serverConfig = require('../scripts/webpack.server.dev');
+const devConfig = require('../scripts/webpack.dev');
+const prodConfig = require('../scripts/webpack.prod');
 
-const publicPath = clientConfig.output.publicPath;
+const publicPath = prodConfig[0].output.publicPath;
 const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 
@@ -21,14 +21,13 @@ const done = () =>
   });
 
 if (!isProduction) {
-  const compiler = webpack([clientConfig, serverConfig]);
+  const compiler = webpack(devConfig);
   const clientCompiler = compiler.compilers[0];
   const options = { publicPath, stats: { colors: true } };
 
   app.use(webpackDevMiddleware(compiler, options));
   app.use(webpackHotMiddleware(clientCompiler));
   app.use(webpackHotServerMiddleware(compiler));
-
   compiler.plugin('done', done);
 } else {
   const clientStats = require('../buildClient/stats.json');
