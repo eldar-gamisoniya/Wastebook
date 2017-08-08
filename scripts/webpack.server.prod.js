@@ -1,10 +1,19 @@
 const webpack = require('webpack');
+const fs = require('fs');
+const path = require('path');
+const { assoc } = require('ramda');
 const paths = require('./parts/paths');
+
+const externals = fs
+  .readdirSync(path.join(paths.rootPath))
+  .filter(x => !/\.bin|react-universal-component|webpack-flush-chunks/.test(x))
+  .reduce((ext, mod) => assoc(mod, `commonjs ${mod}`, ext), {});
 
 module.exports = {
   name: 'server',
   target: 'node',
   entry: paths.serverRenderPath,
+  externals,
   output: {
     path: paths.serverOutputPath,
     filename: '[name].js',
@@ -31,6 +40,9 @@ module.exports = {
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
+          options: {
+            forceEnv: 'clientProduction',
+          },
           // TODO: add cache directory for babel-loader with identifier
         },
       },

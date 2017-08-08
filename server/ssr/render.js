@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
-import App from '../client/App';
+import App from '../../client/App';
 
 export default ({ clientStats }) => (req, res) => {
   const app = ReactDOM.renderToString(<App />);

@@ -18,6 +18,6 @@ module.exports = {
   rootPath,
   npmModulesPath: path.join(rootPath, 'npm_modules'),
   serverAppPath,
-  serverRenderPath: path.join(serverAppPath, 'render.js'),
+  serverRenderPath: path.join(serverAppPath, 'ssr', 'render.js'),
   serverOutputPath: path.join(rootPath, 'buildServer'),
 };

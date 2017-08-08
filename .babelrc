@@ -1,26 +1,31 @@
 {
   "presets": [
-    "react",
-    ["env", { "modules": false, "useBuiltIns": true, "targets": {
-      "browsers": "last 1 version"
-    }}]
+    "react"
   ],
   "plugins": [
     "syntax-dynamic-import",
     "transform-class-properties",
     "transform-object-rest-spread",
-    "react-hot-loader/babel",
     "universal-import"
   ],
   "env": {
-    "production": {
+    "clientDevelopment": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "clientProduction": {
       "presets": [
+        ["env", { "modules": false, "useBuiltIns": true, "targets": {
+          "browsers": "last 1 version"
+        }}]
       ],
       "plugins": [
         ["transform-react-remove-prop-types", {
           "mode": "remove",
           "removeImport": true
-        }]
+        }],
+        "transform-react-constant-elements"
       ]
     }
   }
