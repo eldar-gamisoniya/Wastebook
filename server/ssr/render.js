@@ -35,6 +35,6 @@ export default ({ clientStats }) => (req, res) => {
           ${cssHash}
           ${js}
         </body>
-      </html>`,
+      </html>`
   );
 };

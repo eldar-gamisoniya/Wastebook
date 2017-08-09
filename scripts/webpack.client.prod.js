@@ -9,9 +9,7 @@ const paths = require('./parts/paths');
 module.exports = {
   name: 'client',
   target: 'web',
-  entry: [
-    path.join(paths.clientAppPath, 'index.js'),
-  ],
+  entry: [path.join(paths.clientAppPath, 'index.js')],
   output: {
     path: paths.clientOutputPath,
     publicPath: paths.publicPath,

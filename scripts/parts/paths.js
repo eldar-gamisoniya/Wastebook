@@ -5,7 +5,7 @@ const rootPath = process.cwd();
 
 // check if script started from root
 if (!fs.existsSync(path.join(rootPath, 'package.json'))) {
-  throw new Error('You should run webpack from the project\'s root.');
+  throw new Error("You should run webpack from the project's root.");
 }
 
 const serverAppPath = path.join(rootPath, 'server');

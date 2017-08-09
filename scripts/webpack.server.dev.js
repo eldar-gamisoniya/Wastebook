@@ -13,7 +13,6 @@ const externals = fs
   .filter(x => !/\.bin|react-universal-component|webpack-flush-chunks/.test(x))
   .reduce((ext, mod) => assoc(mod, `commonjs ${mod}`, ext), {});
 
-
 module.exports = {
   name: 'server',
   target: 'node',

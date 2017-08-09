@@ -6,11 +6,10 @@ const UniversalComponent = universal(() => import('./AsyncComponent'), {
   loading: <div>Loading...</div>,
 });
 
-const App = () => (
+const App = () =>
   <div>
     Hi, everybody!
     <UniversalComponent />
-  </div>
-);
+  </div>;
 
 export default App;
