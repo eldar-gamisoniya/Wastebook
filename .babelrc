@@ -6,12 +6,12 @@
     "syntax-dynamic-import",
     "transform-class-properties",
     "transform-object-rest-spread",
-    "universal-import",
-    "react-hot-loader/babel"
+    "universal-import"
   ],
   "env": {
     "clientDevelopment": {
       "plugins": [
+        "react-hot-loader/babel"
       ]
     },
     "clientProduction": {

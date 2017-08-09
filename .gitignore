@@ -3,6 +3,7 @@ buildServer
 **/jsconfig.json
 
 .DS_Store
+.vscode
 
 # Logs
 logs

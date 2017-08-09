@@ -4,17 +4,28 @@ import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import App from '../../client/App';
 
+const deferScripts = (scripts, publicPath) =>
+  scripts
+    .map(
+      script =>
+        `<script type="text/javascript" src="${publicPath}/${script}" defer></script>`
+    )
+    .join('');
+
 export default ({ clientStats }) => (req, res) => {
   const app = ReactDOM.renderToString(<App />);
   const chunkNames = flushChunkNames();
 
   const {
-    js,
     styles,
     cssHash,
     scripts,
     stylesheets,
-  } = flushChunks(clientStats, { chunkNames });
+    publicPath,
+  } = flushChunks(clientStats, {
+    chunkNames,
+  });
+  const htmlScripts = deferScripts(scripts, publicPath);
 
   if (process.env.NODE_ENV !== 'production') {
     console.log('PATH', req.path);
@@ -33,7 +44,7 @@ export default ({ clientStats }) => (req, res) => {
         <body>
           <div id="root">${app}</div>
           ${cssHash}
-          ${js}
+          ${htmlScripts}
         </body>
       </html>`
   );

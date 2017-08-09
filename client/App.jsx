@@ -4,6 +4,10 @@ import './App.css';
 
 const UniversalComponent = universal(() => import('./AsyncComponent'), {
   loading: <div>Loading...</div>,
+  onLoad: (module, { isServer }) => {
+    if (isServer) return;
+    import('./asyncFile.js').then(al => al.default());
+  },
 });
 
 const App = () =>
