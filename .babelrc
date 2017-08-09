@@ -20,6 +20,7 @@
           "browsers": "Chrome >= 60"
         }}]
       ],
+      "compact": true,
       "plugins": [
         ["transform-react-remove-prop-types", {
           "mode": "remove",

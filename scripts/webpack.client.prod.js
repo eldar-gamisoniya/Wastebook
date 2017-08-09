@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const paths = require('./parts/paths');
 
 module.exports = {
+  bail: true,
   name: 'client',
   target: 'web',
   entry: [path.join(paths.clientAppPath, 'index.js')],
@@ -58,6 +59,7 @@ module.exports = {
               options: {
                 importLoaders: 1,
                 modules: true,
+                minimize: true,
                 sourceMap: true,
                 localIdentName: '[name]__[local]--[hash:base64:5]',
               },
