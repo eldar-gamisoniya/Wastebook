@@ -6,7 +6,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const webpackConfig = require('../webpack.config');
 
-const publicPath = webpackConfig[0].output.publicPath;
+const clientPublicPath = webpackConfig[0].output.publicPath;
+const clientOutputPath = webpackConfig[0].output.path;
+const serverOutputPath = webpackConfig[1].output.path;
 const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 
@@ -22,16 +24,16 @@ const done = () =>
 if (!isProduction) {
   const compiler = webpack(webpackConfig);
   const clientCompiler = compiler.compilers[0];
-  const options = { publicPath, stats: { colors: true } };
+  const options = { clientPublicPath, stats: { colors: true } };
 
   app.use(webpackDevMiddleware(compiler, options));
   app.use(webpackHotMiddleware(clientCompiler));
   app.use(webpackHotServerMiddleware(compiler));
   compiler.plugin('done', done);
 } else {
-  const clientStats = require('../buildClient/stats.json');
-  const serverRender = require('../buildServer/main.js').default;
-  app.use(publicPath, express.static(path.join(__dirname, '../buildClient')));
+  const clientStats = require(`${clientOutputPath}/stats.json`);
+  const serverRender = require(`${serverOutputPath}/main.js`).default;
+  app.use(clientPublicPath, express.static(clientOutputPath));
   app.use(serverRender({ clientStats }));
   done();
 }
