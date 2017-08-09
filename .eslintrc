@@ -4,18 +4,23 @@
     "sourceType": "module"
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
-  "plugins": [
-    "css-modules"
-  ],
   "extends": [
     "plugin:css-modules/recommended",
-    "airbnb"
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "css-modules",
+    "react",
+    "import",
+    "prettier"
   ],
   "rules": {
-    "react/jsx-filename-extension": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": false}],
-    "global-require": 0
+    "global-require": 0,
+    "prettier/prettier": "error"
   }
 }

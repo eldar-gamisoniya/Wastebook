@@ -6,18 +6,18 @@
     "syntax-dynamic-import",
     "transform-class-properties",
     "transform-object-rest-spread",
-    "universal-import"
+    "universal-import",
+    "react-hot-loader/babel"
   ],
   "env": {
     "clientDevelopment": {
       "plugins": [
-        "react-hot-loader/babel"
       ]
     },
     "clientProduction": {
       "presets": [
         ["env", { "modules": false, "useBuiltIns": true, "targets": {
-          "browsers": "last 1 version"
+          "browsers": "Chrome >= 60"
         }}]
       ],
       "plugins": [

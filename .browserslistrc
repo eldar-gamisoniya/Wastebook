@@ -1,5 +1,5 @@
 [production]
-last 1 version
+Chrome >= 59
 
 [development]
-last 1 version
+Chrome >= 59
