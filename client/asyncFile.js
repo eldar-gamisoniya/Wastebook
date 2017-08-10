@@ -1,1 +1,1 @@
-export default () => alert(123576);
+export default () => console.log(123576);

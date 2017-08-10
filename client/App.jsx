@@ -1,6 +1,7 @@
 import React from 'react';
 import universal from 'react-universal-component';
 import './App.css';
+import AsyncComponent from './AsyncComponent';
 
 const UniversalComponent = universal(() => import('./AsyncComponent'), {
   loading: <div>Loading...</div>,
@@ -13,7 +14,8 @@ const UniversalComponent = universal(() => import('./AsyncComponent'), {
 const App = () =>
   <div>
     Hi, everybody!
-    <UniversalComponent />
+    <UniversalComponent number={1} />
+    <UniversalComponent number={2} />
   </div>;
 
 export default App;
