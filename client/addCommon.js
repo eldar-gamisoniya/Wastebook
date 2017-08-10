@@ -1,2 +1,1 @@
-export default (number) => number + 1;
-
+export default number => number + 1;

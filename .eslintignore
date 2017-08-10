@@ -1,2 +1,3 @@
-**/build/**
+**/buildClient/**
+**/buildServer/**
 **/node_modules/**

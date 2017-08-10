@@ -7,11 +7,13 @@ const paths = require('./parts/paths');
 module.exports = {
   name: 'client',
   target: 'web',
-  entry: [
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
-    'react-hot-loader/patch',
-    path.join(paths.clientAppPath, 'index.js'),
-  ],
+  entry: {
+    app: [
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
+      'react-hot-loader/patch',
+      path.join(paths.clientAppPath, 'index.js'),
+    ]
+  },
   output: {
     path: paths.clientOutputPath,
     publicPath: paths.publicPath,

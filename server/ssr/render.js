@@ -24,6 +24,8 @@ export default ({ clientStats }) => (req, res) => {
     publicPath,
   } = flushChunks(clientStats, {
     chunkNames,
+    before: ['manifest'],
+    after: ['app'],
   });
   const htmlScripts = deferScripts(scripts, publicPath);
 

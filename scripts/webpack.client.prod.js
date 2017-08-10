@@ -10,7 +10,9 @@ module.exports = {
   bail: true,
   name: 'client',
   target: 'web',
-  entry: [path.join(paths.clientAppPath, 'index.js')],
+  entry: {
+    app: [path.join(paths.clientAppPath, 'index.js')]
+  },
   output: {
     path: paths.clientOutputPath,
     publicPath: paths.publicPath,
@@ -79,8 +81,8 @@ module.exports = {
     new StatsPlugin('stats.json'),
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['bootstrap'],
-      filename: '[name].js',
+      name: 'manifest',
+      filename: '[name].[chunkhash].js',
       minChunks: Infinity,
     }),
     new BabiliPlugin(),
