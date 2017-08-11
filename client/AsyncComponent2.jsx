@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createBrowserHistory } from 'history';
-import styles from './AsyncComponent.css';
+import styles from './AsyncComponent2.css';
 import * as add1 from './add1.js';
 
 class AsyncComponent extends React.PureComponent {

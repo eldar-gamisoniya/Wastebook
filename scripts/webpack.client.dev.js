@@ -12,7 +12,7 @@ module.exports = {
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
       'react-hot-loader/patch',
       path.join(paths.clientAppPath, 'index.js'),
-    ]
+    ],
   },
   output: {
     path: paths.clientOutputPath,
@@ -76,8 +76,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['bootstrap'],
-      filename: '[name].js',
+      name: 'manifest',
       minChunks: Infinity,
     }),
     new webpack.DefinePlugin({

@@ -6,12 +6,15 @@ const webpack = require('webpack');
 
 const paths = require('./parts/paths');
 
+const isVendor = module =>
+  module.context && module.context.indexOf('node_modules') !== -1;
+
 module.exports = {
   bail: true,
   name: 'client',
   target: 'web',
   entry: {
-    app: [path.join(paths.clientAppPath, 'index.js')]
+    app: [path.join(paths.clientAppPath, 'index.js')],
   },
   output: {
     path: paths.clientOutputPath,
@@ -80,9 +83,28 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new StatsPlugin('stats.json'),
     new ExtractCssChunks(),
+    // push app's vendor packages to chunk for long term hashing
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: isVendor,
+    }),
+    // as there is no much modules yet, add to async
+    // bundle every vendor module which is repeating more than once
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      children: true,
+      async: 'app-async-vendor',
+      minChunks: (module, count) => isVendor(module) && count >= 2,
+    }),
+    // // also add specific modules to another chunk for long term hashing
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['app'],
+      children: true,
+      async: 'app-async',
+      minChunks: (module, count) => !isVendor(module) && count >= 2,
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-      filename: '[name].[chunkhash].js',
       minChunks: Infinity,
     }),
     new BabiliPlugin(),

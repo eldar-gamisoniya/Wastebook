@@ -24,17 +24,12 @@ export default ({ clientStats }) => (req, res) => {
     publicPath,
   } = flushChunks(clientStats, {
     chunkNames,
-    before: ['manifest'],
+    // need to list all commons chunks here for now
+    before: ['manifest', 'vendor', 'app-async', 'app-async-vendor'],
     after: ['app'],
   });
   const htmlScripts = deferScripts(scripts, publicPath);
 
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('PATH', req.path);
-    console.log('DYNAMIC CHUNK NAMES RENDERED', chunkNames);
-    console.log('SCRIPTS SERVED', scripts);
-    console.log('STYLESHEETS SERVED', stylesheets);
-  }
   res.send(
     `<!doctype html>
       <html>
