@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const webpack = require('webpack');
 
 const paths = require('./parts/paths');
@@ -73,6 +74,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new StyleLintPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
