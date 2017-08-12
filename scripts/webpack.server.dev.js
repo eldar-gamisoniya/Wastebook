@@ -32,15 +32,6 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          emitWarning: true,
-        },
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           // TODO: add cache directory for babel-loader with identifier

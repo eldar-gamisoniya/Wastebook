@@ -28,16 +28,6 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          failOnWarning: true,
-          failOnError: true,
-        },
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {

@@ -48,6 +48,7 @@
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
     "extract-css-chunks-webpack-plugin": "^2.0.16",
+    "name-all-modules-plugin": "^1.0.1",
     "postcss-loader": "^2.0.6",
     "prettier": "^1.5.3",
     "prettier-eslint": "^6.4.2",
