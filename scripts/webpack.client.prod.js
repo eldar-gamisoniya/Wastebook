@@ -26,8 +26,8 @@ module.exports = {
   output: {
     path: paths.clientOutputPath,
     publicPath: paths.publicPath,
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
+    filename: 'js/[name].[chunkhash].js',
+    chunkFilename: 'js/[name].[chunkhash].js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -96,7 +96,9 @@ module.exports = {
     ),
     new StatsPlugin('stats.json'),
     new StyleLintPlugin(),
-    new ExtractCssChunks(),
+    new ExtractCssChunks({
+      filename: 'css/[name].[contenthash].css',
+    }),
     // push app's vendor packages to chunk for long term hashing
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
