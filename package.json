@@ -71,10 +71,14 @@
     "history": "^4.6.3",
     "prop-types": "^15.5.10",
     "ramda": "^0.24.1",
+    "re-reselect": "^0.6.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
+    "react-redux": "^5.0.6",
     "react-universal-component": "^2.3.2",
+    "redux": "^3.7.2",
+    "reselect": "^3.0.1",
     "webpack-flush-chunks": "^1.1.18"
   }
 }
