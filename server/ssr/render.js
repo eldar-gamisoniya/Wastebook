@@ -8,7 +8,7 @@ const deferScripts = (scripts, publicPath) =>
   scripts
     .map(
       script =>
-        `<script type="text/javascript" src="${publicPath}/${script}" defer></script>`
+        `<script type="text/javascript" src="${publicPath}/${script}" defer></script>`,
     )
     .join('');
 
@@ -43,6 +43,6 @@ export default ({ clientStats }) => (req, res) => {
           ${cssHash}
           ${htmlScripts}
         </body>
-      </html>`
+      </html>`,
   );
 };

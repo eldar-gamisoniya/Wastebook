@@ -92,7 +92,7 @@ module.exports = {
     // (for example for anonymous async commons chunks)
     new webpack.NamedChunksPlugin(
       chunk =>
-        chunk.name || createHash(chunk.mapModules(m => m.identifier).join('_'))
+        chunk.name || createHash(chunk.mapModules(m => m.identifier).join('_')),
     ),
     new StatsPlugin('stats.json'),
     new StyleLintPlugin(),

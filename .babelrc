@@ -6,7 +6,8 @@
     "syntax-dynamic-import",
     "transform-class-properties",
     "transform-object-rest-spread",
-    "universal-import"
+    "universal-import",
+    "syntax-trailing-function-commas"
   ],
   "env": {
     "clientDevelopment": {
