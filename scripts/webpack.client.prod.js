@@ -30,10 +30,9 @@ module.exports = {
     chunkFilename: 'js/[name].[chunkhash].js',
   },
   resolve: {
-    extensions: ['.js', '.json'],
     alias: {
       modules: paths.modulesAliasPath,
-      components: paths.componentsAliasPath,
+      shared: paths.sharedAliasPath,
       utilities: paths.utilitiesAliasPath,
     },
   },

@@ -20,10 +20,9 @@ module.exports = {
     libraryTarget: 'commonjs2',
   },
   resolve: {
-    extensions: ['.js', '.json'],
     alias: {
       modules: paths.modulesAliasPath,
-      components: paths.componentsAliasPath,
+      shared: paths.sharedAliasPath,
       utilities: paths.utilitiesAliasPath,
     },
   },
@@ -35,10 +34,10 @@ module.exports = {
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
-          options: {
-            forceEnv: 'clientProduction',
-          },
           // TODO: add cache directory for babel-loader with identifier
+          options: {
+            forceEnv: 'server',
+          },
         },
       },
       {

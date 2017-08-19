@@ -15,8 +15,8 @@ const clientOutputPath = path.join(rootPath, 'buildClient');
 module.exports = {
   clientAppPath,
   clientOutputPath,
-  modulesAliasPath: path.join(clientAppPath, 'module'),
-  componentsAliasPath: path.join(clientAppPath, 'components'),
+  modulesAliasPath: path.join(clientAppPath, 'modules'),
+  sharedAliasPath: path.join(clientAppPath, 'shared'),
   utilitiesAliasPath: path.join(clientAppPath, 'utilities'),
   publicPath: '/static/',
   rootPath,

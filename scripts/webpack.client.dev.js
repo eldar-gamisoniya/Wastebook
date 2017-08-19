@@ -22,11 +22,9 @@ module.exports = {
     chunkFilename: '[name].js',
   },
   resolve: {
-    extensions: ['.js', '.json'],
-    modules: ['node_modules', 'client'],
     alias: {
-      modules: '/Users/Eldar/Projects/Wastebook/client/modules',
-      components: paths.componentsAliasPath,
+      modules: paths.modulesAliasPath,
+      shared: paths.sharedAliasPath,
       utilities: paths.utilitiesAliasPath,
     },
   },
