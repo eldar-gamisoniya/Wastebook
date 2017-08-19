@@ -23,6 +23,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      core: paths.coreAliasPath,
       modules: paths.modulesAliasPath,
       shared: paths.sharedAliasPath,
       utilities: paths.utilitiesAliasPath,

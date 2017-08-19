@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
-import { App } from 'modules/core';
+import App from 'core/components/App';
 
 const deferScripts = (scripts, publicPath) =>
   scripts
