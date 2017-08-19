@@ -1,10 +1,13 @@
 import React from 'react';
 import universal from 'react-universal-component';
-import './App.css';
+import './style.css';
 
-const UniversalComponent = universal(() => import('./AsyncComponent'), {
-  loading: <div>Loading...</div>,
-});
+const UniversalComponent = universal(
+  () => import('components/AsyncComponent'),
+  {
+    loading: <div>Loading...</div>,
+  },
+);
 
 const App = () =>
   <div>

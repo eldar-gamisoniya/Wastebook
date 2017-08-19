@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AsyncComponent.css';
+import styles from './style.css';
 
 const AsyncComponent = ({ number }) =>
   <div className={styles.someStyle}>

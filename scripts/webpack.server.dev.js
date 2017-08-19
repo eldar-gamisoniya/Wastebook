@@ -24,13 +24,18 @@ module.exports = {
     libraryTarget: 'commonjs2',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.json'],
+    alias: {
+      modules: paths.modulesAliasPath,
+      components: paths.componentsAliasPath,
+      utilities: paths.utilitiesAliasPath,
+    },
   },
   devtool: 'eval',
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',

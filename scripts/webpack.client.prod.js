@@ -30,7 +30,12 @@ module.exports = {
     chunkFilename: 'js/[name].[chunkhash].js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.json'],
+    alias: {
+      modules: paths.modulesAliasPath,
+      components: paths.componentsAliasPath,
+      utilities: paths.utilitiesAliasPath,
+    },
   },
   devtool: 'source-map',
   module: {
@@ -41,7 +46,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /(node_modules)/,
         enforce: 'pre',
         loader: 'eslint-loader',
@@ -51,7 +56,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',

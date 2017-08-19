@@ -22,7 +22,13 @@ module.exports = {
     chunkFilename: '[name].js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.json'],
+    modules: ['node_modules', 'client'],
+    alias: {
+      modules: '/Users/Eldar/Projects/Wastebook/client/modules',
+      components: paths.componentsAliasPath,
+      utilities: paths.utilitiesAliasPath,
+    },
   },
   devtool: 'cheap-module-inline-source-map',
   module: {
@@ -33,7 +39,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         exclude: /(node_modules)/,
         enforce: 'pre',
         loader: 'eslint-loader',
@@ -42,7 +48,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
