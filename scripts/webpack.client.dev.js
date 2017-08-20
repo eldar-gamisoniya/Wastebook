@@ -4,6 +4,11 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const webpack = require('webpack');
 
 const paths = require('./parts/paths');
+const {
+  createLoaderForStyling,
+  GLOBAL_STYLES,
+  LOCAL_STYLES,
+} = require('./parts/styling');
 
 module.exports = {
   name: 'client',
@@ -57,40 +62,8 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.global\.css$/,
-        exclude: /(node_modules)/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: false,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-            'postcss-loader',
-          ],
-        }),
-      },
-      {
-        test: /^((?!\.global).)*\.css$/,
-        exclude: /(node_modules)/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-            'postcss-loader',
-          ],
-        }),
-      },
+      createLoaderForStyling(GLOBAL_STYLES, false, true, false),
+      createLoaderForStyling(LOCAL_STYLES, true, true, false),
     ],
   },
   plugins: [

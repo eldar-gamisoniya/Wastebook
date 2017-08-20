@@ -4,6 +4,12 @@ const path = require('path');
 const { assoc } = require('ramda');
 const paths = require('./parts/paths');
 
+const {
+  createLoaderForStyling,
+  GLOBAL_STYLES,
+  LOCAL_STYLES,
+} = require('./parts/styling');
+
 const externals = fs
   .readdirSync(path.join(paths.rootPath))
   .filter(x => !/\.bin|react-universal-component|webpack-flush-chunks/.test(x))
@@ -41,36 +47,8 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.global\.css$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'css-loader/locals',
-            options: {
-              importLoaders: 1,
-              modules: false,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-          'postcss-loader',
-        ],
-      },
-      {
-        test: /^((?!\.global).)*\.css$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'css-loader/locals',
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-          'postcss-loader',
-        ],
-      },
+      createLoaderForStyling(GLOBAL_STYLES, false, false, true),
+      createLoaderForStyling(LOCAL_STYLES, true, false, true),
     ],
   },
   plugins: [

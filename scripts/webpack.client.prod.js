@@ -8,13 +8,20 @@ const webpack = require('webpack');
 const crypto = require('crypto');
 
 const paths = require('./parts/paths');
+const {
+  createLoaderForStyling,
+  GLOBAL_STYLES,
+  LOCAL_STYLES,
+} = require('./parts/styling');
 
 // create hash for anonymous commons chunks
 const createHash = str =>
   crypto.createHash('sha256').update(str).digest('base64').slice(0, 8);
 
 const isVendor = module =>
-  module.context && module.context.indexOf('node_modules') !== -1;
+  module.context &&
+  module.context.indexOf('node_modules') !== -1 &&
+  (module.resource.endsWith('.js') || module.resource.endsWith('.json'));
 
 module.exports = {
   bail: true,
@@ -66,44 +73,8 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.global\.css$/,
-        exclude: /(node_modules)/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: false,
-                minimize: true,
-                sourceMap: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-            'postcss-loader',
-          ],
-        }),
-      },
-      {
-        test: /^((?!\.global).)*\.css$/,
-        exclude: /(node_modules)/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: true,
-                minimize: true,
-                sourceMap: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-            { loader: 'postcss-loader', options: { sourceMap: true } },
-          ],
-        }),
-      },
+      createLoaderForStyling(GLOBAL_STYLES, false, true, true),
+      createLoaderForStyling(LOCAL_STYLES, true, true, true),
     ],
   },
   plugins: [

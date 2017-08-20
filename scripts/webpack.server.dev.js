@@ -4,6 +4,12 @@ const webpack = require('webpack');
 const paths = require('./parts/paths');
 const { assoc } = require('ramda');
 
+const {
+  createLoaderForStyling,
+  GLOBAL_STYLES,
+  LOCAL_STYLES,
+} = require('./parts/styling');
+
 // if you're specifying externals to leave unbundled, you need to tell Webpack
 // to still bundle `react-universal-component`, `webpack-flush-chunks` and
 // `require-universal-module` so that they know they are running
@@ -45,36 +51,8 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.global\.css$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'css-loader/locals',
-            options: {
-              importLoaders: 1,
-              modules: false,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-          'postcss-loader',
-        ],
-      },
-      {
-        test: /^((?!\.global).)*\.css$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'css-loader/locals',
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-          'postcss-loader',
-        ],
-      },
+      createLoaderForStyling(GLOBAL_STYLES, false, false, false),
+      createLoaderForStyling(LOCAL_STYLES, true, false, false),
     ],
   },
   plugins: [
