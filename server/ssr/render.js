@@ -30,6 +30,8 @@ export default ({ clientStats }) => (req, res) => {
   });
   const htmlScripts = deferScripts(scripts, publicPath);
 
+  console.log(`${styles}`);
+
   res.send(
     `<!doctype html>
       <html>

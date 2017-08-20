@@ -58,7 +58,24 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.global\.css$/,
+        exclude: /(node_modules)/,
+        use: ExtractCssChunks.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: false,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+            'postcss-loader',
+          ],
+        }),
+      },
+      {
+        test: /^((?!\.global).)*\.css$/,
         exclude: /(node_modules)/,
         use: ExtractCssChunks.extract({
           use: [

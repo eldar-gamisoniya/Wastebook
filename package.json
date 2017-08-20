@@ -82,6 +82,7 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
     "reselect": "^3.0.1",
+    "tachyons": "^4.8.1",
     "webpack-flush-chunks": "^1.1.18"
   }
 }
