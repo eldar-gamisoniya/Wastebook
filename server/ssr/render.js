@@ -16,13 +16,7 @@ export default ({ clientStats }) => (req, res) => {
   const app = ReactDOM.renderToString(<App />);
   const chunkNames = flushChunkNames();
 
-  const {
-    styles,
-    cssHash,
-    scripts,
-    stylesheets,
-    publicPath,
-  } = flushChunks(clientStats, {
+  const { styles, cssHash, scripts, publicPath } = flushChunks(clientStats, {
     chunkNames,
     // need to list all commons chunks here for now
     before: ['manifest', 'vendor', 'app-async', 'app-async-vendor'],

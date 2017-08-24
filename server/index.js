@@ -1,9 +1,10 @@
-const express = require('express');
-const path = require('path');
+/* eslint-disable import/no-extraneous-dependencies */
 const webpack = require('webpack'); // aliased to webpack-universal
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+/* eslint-enable import/no-extraneous-dependencies */
+const express = require('express');
 const webpackConfig = require('../webpack.config');
 
 const clientPublicPath = webpackConfig[0].output.publicPath;

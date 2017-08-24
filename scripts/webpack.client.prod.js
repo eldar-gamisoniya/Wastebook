@@ -1,10 +1,12 @@
-const path = require('path');
+/* eslint-disable import/no-extraneous-dependencies */
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const NameAllModulesPlugin = require('name-all-modules-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const webpack = require('webpack');
+/* eslint-enable import/no-extraneous-dependencies */
+const path = require('path');
 const crypto = require('crypto');
 
 const paths = require('./parts/paths');

@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const webpack = require('webpack');
+/* eslint-enable import/no-extraneous-dependencies */
 const fs = require('fs');
 const path = require('path');
 const { assoc } = require('ramda');
