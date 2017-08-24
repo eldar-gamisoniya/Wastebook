@@ -1,5 +1,6 @@
+import { STEP_MODULE_KEY } from '../constants';
 import stepsReducer from './steps';
 
 export default {
-  steps: stepsReducer,
+  [STEP_MODULE_KEY]: stepsReducer,
 };
