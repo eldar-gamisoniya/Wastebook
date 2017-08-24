@@ -5,13 +5,16 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "plugins": [
     "css-modules",
+    "jest",
     "prettier"
   ],
   "extends": [
+    "plugin:jest/recommended",
     "airbnb",
     "prettier",
     "prettier/react"

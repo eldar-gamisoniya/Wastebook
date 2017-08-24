@@ -27,7 +27,7 @@ if (!isProduction) {
   const clientCompiler = compiler.compilers[0];
   const options = { clientPublicPath, stats: { colors: true } };
 
-  app.get('/favicon.ico', function(req, res) {
+  app.get('/favicon.ico', (req, res) => {
     res.sendStatus(204);
   });
   app.use(webpackDevMiddleware(compiler, options));
@@ -35,8 +35,10 @@ if (!isProduction) {
   app.use(webpackHotServerMiddleware(compiler));
   compiler.plugin('done', done);
 } else {
+  /* eslint-disable import/no-dynamic-require */
   const clientStats = require(`${clientOutputPath}/stats.json`);
   const serverRender = require(`${serverOutputPath}/main.js`).default;
+  /* eslint-enable import/no-dynamic-require */
   app.use(clientPublicPath, express.static(clientOutputPath));
   app.use(serverRender({ clientStats }));
   done();
