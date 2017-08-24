@@ -1,7 +1,7 @@
-import { STEP_SUCCESS, STEP_FAILURE } from './constants';
+import { STEP_VALIDATE, STEP_FAILURE } from './constants';
 
-export const stepSuccessed = step => ({
-  type: STEP_SUCCESS,
+export const stepValidated = step => ({
+  type: STEP_VALIDATE,
   payload: {
     step,
   },

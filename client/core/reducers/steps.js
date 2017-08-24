@@ -1,4 +1,4 @@
-import { STEP_SUCCESS, STEP_FAILURE } from '../constants';
+import { STEP_VALIDATE, STEP_FAILURE } from '../constants';
 
 const initialState = {
   currentStep: 1,
@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case STEP_SUCCESS:
+    case STEP_VALIDATE:
       return {
         ...state,
         currentStep: Math.max(state.currentStep, payload.step),
