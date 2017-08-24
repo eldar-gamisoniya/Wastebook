@@ -2,12 +2,19 @@ import 'babel-polyfill';
 import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
 import App from 'core/components/App';
+import configureStore from './configureStore';
+
+const store = configureStore(window.REDUX_INITIAL_STATE);
 
 const render = () => {
   ReactDOM.render(
     <AppContainer>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </AppContainer>,
     document.getElementById('root'),
   );

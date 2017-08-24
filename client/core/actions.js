@@ -1,4 +1,15 @@
-import add from 'utilities/add';
+import { STEP_SUCCESS, STEP_FAILURE } from './constants';
 
-const add3 = a => add(a, 3);
-export default add3;
+export const stepSuccessed = step => ({
+  type: STEP_SUCCESS,
+  payload: {
+    step,
+  },
+});
+
+export const stepFailed = step => ({
+  type: STEP_FAILURE,
+  payload: {
+    step,
+  },
+});

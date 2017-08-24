@@ -1,0 +1,2 @@
+export const STEP_SUCCESS = 'CORE/STEP_SUCCESS';
+export const STEP_FAILURE = 'CORE/STEP_FAILURE';
