@@ -4,8 +4,8 @@
   "description": "Test social network",
   "main": "server/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development node server/index.js",
-    "start:prod": "cross-env NODE_ENV=production node server/index.js",
+    "start:dev": "cross-env NODE_ENV=development node server/index.js",
+    "start": "cross-env NODE_ENV=production node server/index.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack",
     "analyze": "webpack-bundle-analyzer ./buildClient/stats.json",
     "clean": "rimraf buildClient buildServer",
