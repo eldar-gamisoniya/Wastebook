@@ -10,7 +10,7 @@ describe('steps reducer', () => {
   });
   it('should switch to the second step', () => {
     const initialState = createInitialState();
-    const action = stepValidated(2);
+    const action = stepValidated(1);
     const newState = stepsReducer(initialState, action);
     expect(getCurrentStep(newState)).toBe(2);
   });

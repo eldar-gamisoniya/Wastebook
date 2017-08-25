@@ -9,7 +9,7 @@ export default (state = initialState, { type, payload }) => {
     case STEP_VALIDATE:
       return {
         ...state,
-        currentStep: Math.max(state.currentStep, payload.step),
+        currentStep: Math.max(state.currentStep, payload.step + 1),
       };
     case STEP_FAILURE:
       return {

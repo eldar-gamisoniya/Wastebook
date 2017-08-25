@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form';
-import PropTypes from 'prop-types';
 
 export default class CheckboxGroup extends Component {
-  static propTypes = {
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-  };
-
   field = ({ input, meta, options }) => {
     const { name, onChange, onBlur, onFocus } = input;
     const { touched, error } = meta;
@@ -64,13 +53,6 @@ export default class CheckboxGroup extends Component {
   };
 
   render() {
-    return (
-      <Field
-        name={this.props.name}
-        options={this.props.options}
-        type="checkbox"
-        component={this.field}
-      />
-    );
+    return <Field {...this.props} type="checkbox" component={this.field} />;
   }
 }
