@@ -7,7 +7,7 @@ const Step = ({ children }) =>
   </div>;
 
 Step.propTypes = {
-  children: PropTypes.children,
+  children: PropTypes.node,
 };
 
 Step.defaultProps = {

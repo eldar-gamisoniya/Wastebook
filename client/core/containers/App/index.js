@@ -5,8 +5,7 @@ import '../../styles.global.css';
 
 const App = () =>
   <div>
-    Hi, everybody!
-    <Steps wow="Hi" />
+    <Steps />
   </div>;
 
 export default App;
