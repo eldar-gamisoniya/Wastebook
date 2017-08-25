@@ -15,15 +15,21 @@ const deferScripts = (scripts, publicPath) =>
     )
     .join('');
 
+let initialStore = null;
+
 export default ({ clientStats }) => async (req, res) => {
   const store = await configureStore(req, res);
   if (!store) return;
 
+  // hack while onLoad not triggering on the server
+  if (!initialStore) initialStore = store;
+
   const app = ReactDOM.renderToString(
-    <Provider store={store}>
+    <Provider store={initialStore}>
       <App />
     </Provider>,
   );
+
   const chunkNames = flushChunkNames();
 
   const { styles, cssHash, scripts, publicPath } = flushChunks(clientStats, {
@@ -33,7 +39,7 @@ export default ({ clientStats }) => async (req, res) => {
     after: ['app'],
   });
   const htmlScripts = deferScripts(scripts, publicPath);
-  const state = JSON.stringify(store.getState());
+  const state = JSON.stringify(initialStore.getState());
   res.send(
     `<!doctype html>
       <html>

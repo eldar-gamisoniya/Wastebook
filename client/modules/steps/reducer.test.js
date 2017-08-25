@@ -1,5 +1,5 @@
-import stepsReducer, { getCurrentStep } from './steps';
-import { stepFailed, stepValidated } from './../actions';
+import stepsReducer, { getCurrentStep } from './reducer';
+import { stepFailed, stepValidated } from './actions';
 
 const createInitialState = () => stepsReducer(undefined, {});
 

@@ -1,4 +1,4 @@
-import { STEP_VALIDATE, STEP_FAILURE } from '../constants';
+import { STEP_VALIDATE, STEP_FAILURE } from './constants';
 
 const initialState = {
   currentStep: 1,

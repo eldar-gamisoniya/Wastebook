@@ -3,14 +3,13 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 
 import createRootReducer from 'utilities/createRootReducer';
-import { initAsyncStore } from 'utilities/asyncInjectors';
 
 const composeEnhancers = (...args) =>
   typeof window !== 'undefined'
     ? composeWithDevTools({})(...args)
     : compose(...args);
 
-export default preloadedState => {
+const configureStore = preloadedState => {
   const rootReducer = createRootReducer();
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = applyMiddleware(sagaMiddleware);
@@ -19,10 +18,9 @@ export default preloadedState => {
   const store = createStore(rootReducer, preloadedState, enchancers);
   store.asyncReducers = {};
   store.runSaga = sagaMiddleware.run;
-  initAsyncStore(store);
 
   if (module.hot) {
-    module.hot.accept('./core/reducers', () => {
+    module.hot.accept('./core/reducer', () => {
       const newRootReducer = createRootReducer();
       store.replaceReducer(newRootReducer);
     });
@@ -30,3 +28,4 @@ export default preloadedState => {
 
   return store;
 };
+export default configureStore;

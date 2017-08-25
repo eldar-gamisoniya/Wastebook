@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 
-import coreReducers from 'core/reducers';
+import coreReducers from 'core/reducer';
 
 export default asyncReducers =>
   combineReducers({
-    form: formReducer,
     ...coreReducers,
     ...asyncReducers,
   });
