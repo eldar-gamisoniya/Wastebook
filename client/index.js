@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import App from 'core/components/App';
+import App from 'core/containers/App';
 import configureStore from './configureStore';
 
 const store = configureStore(window.REDUX_INITIAL_STATE);
@@ -21,7 +21,7 @@ const render = () => {
 };
 
 if (module.hot) {
-  module.hot.accept('core/components/App', () => {
+  module.hot.accept('core/containers/App', () => {
     render();
   });
 }

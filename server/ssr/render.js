@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 
-import App from 'core/components/App';
+import App from 'core/containers/App';
 import configureStore from './configureStore';
 
 const deferScripts = (scripts, publicPath) =>
