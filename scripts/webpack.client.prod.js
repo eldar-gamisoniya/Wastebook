@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
-const BabiliPlugin = require('babili-webpack-plugin');
 const NameAllModulesPlugin = require('name-all-modules-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
