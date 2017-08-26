@@ -3,7 +3,7 @@ import * as constants from './constants';
 const initialState = {};
 
 export default (state = initialState, { type, payload }) => {
-  const sequenceName = payload.sequence;
+  const sequenceName = payload && payload.sequence;
   const sequence = state[sequenceName] || 0;
   switch (type) {
     case constants.NEXT_STEP:
@@ -22,4 +22,4 @@ export default (state = initialState, { type, payload }) => {
   }
 };
 
-export const getCurrentStep = (state, { sequence }) => state[sequence];
+export const getCurrentStep = (state, { sequence }) => state[sequence] || 0;

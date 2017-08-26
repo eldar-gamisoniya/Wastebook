@@ -31,22 +31,22 @@ const asyncValidation = async values => {
   }
   return {};
 };
-export const StepManager = ({ handleSubmit, asyncValidate, error }) =>
+export const StepManagerComponent = ({ handleSubmit, asyncValidate, error }) =>
   <form onSubmit={handleSubmit}>
     <Step1 />
     <Step2 />
-    <Step3 onClickHandler={() => asyncValidate()} />
+    <Step3 onClickHandler={asyncValidate} />
     <Step4 />
     <Step5 />
     {error}
   </form>;
 
-StepManager.propTypes = {
+StepManagerComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   asyncValidate: PropTypes.func.isRequired,
   error: PropTypes.string,
 };
-StepManager.defaultProps = {
+StepManagerComponent.defaultProps = {
   error: null,
 };
 
@@ -63,4 +63,4 @@ export default reduxForm({
       throw new SubmissionError({ _error: e.message });
     }
   },
-})(StepManager);
+})(StepManagerComponent);

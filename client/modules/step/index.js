@@ -1,6 +1,6 @@
 import * as actions from './actions';
 import * as selectors from './selectors';
-import * as reducer from './reducer';
+import reducer from './reducer';
 import { MODULE_KEY } from './constants';
 
 export { default } from './containers/withStep';

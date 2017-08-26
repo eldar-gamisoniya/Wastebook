@@ -15,7 +15,7 @@ export const previousStep = sequence => ({
 });
 
 export const stepFailed = (sequence, step, beginFromStart = false) => ({
-  type: constants.NEXT_STEP,
+  type: constants.STEP_FAILURE,
   payload: {
     sequence,
     step,

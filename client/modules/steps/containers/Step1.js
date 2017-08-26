@@ -1,4 +1,7 @@
 import React from 'react';
+import { Field } from 'redux-form';
+
+import withStep from 'modules/step';
 import CheckboxGroup from 'shared/CheckboxGroup';
 import Step from './Step';
 
@@ -9,7 +12,7 @@ const step1Options = [
 
 const StepComponent = () =>
   <Step>
-    <CheckboxGroup name="a" options={step1Options} />
+    <Field name="a" options={step1Options} component={CheckboxGroup} />;
   </Step>;
 
-export default StepComponent;
+export default withStep('challenge', 0, { showIfPassed: true })(StepComponent);

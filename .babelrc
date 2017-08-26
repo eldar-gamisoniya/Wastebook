@@ -12,7 +12,8 @@
   "env": {
     "clientDevelopment": {
       "plugins": [
-        "react-hot-loader/babel"
+        "react-hot-loader/babel",
+        "transform-react-jsx-source"
       ]
     },
     "clientProduction": {

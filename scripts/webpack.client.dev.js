@@ -37,7 +37,7 @@ module.exports = {
       api: paths.apiAliasPath,
     },
   },
-  devtool: 'cheap-module-inline-source-map',
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

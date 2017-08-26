@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
+import withStep from 'modules/step';
 import Step from './Step';
 
 export const StepComponent = () =>
@@ -15,4 +16,4 @@ export const StepComponent = () =>
     </div>
   </Step>;
 
-export default StepComponent;
+export default withStep('challenge', 3, { showIfPassed: true })(StepComponent);

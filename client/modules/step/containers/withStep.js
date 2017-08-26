@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { getCurrentStep } from '../selectors';
 import * as actions from '../actions';
 
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Unknown';
+}
+
 const withStep = (sequence, step, { showIfPassed }) => WrappedComponent => {
   const Step = ({
     currentStep,
@@ -35,6 +39,8 @@ const withStep = (sequence, step, { showIfPassed }) => WrappedComponent => {
     previousStep: PropTypes.func.isRequired,
     stepFailed: PropTypes.func.isRequired,
   };
+
+  Step.displayName = `withStep(${getDisplayName(WrappedComponent)})`;
 
   return connect(
     (
