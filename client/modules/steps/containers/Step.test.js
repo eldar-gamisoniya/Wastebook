@@ -3,7 +3,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import Step from './Step';
 
-
 test('Should match snapshot', () => {
   const component = renderer.create(<Step />);
   expect(component.toJSON()).toMatchSnapshot();
@@ -12,13 +11,9 @@ test('Should match snapshot', () => {
 test('Should render childrens', () => {
   const wrapper = mount(
     <Step>
-      <span>
-        test
-      </span>
-      <span>
-        test
-      </span>
-    </Step>
+      <span>test</span>
+      <span>test</span>
+    </Step>,
   );
   expect(wrapper.find('div').children()).toHaveLength(2);
 });
