@@ -12,7 +12,7 @@ const step1Options = [
 
 const StepComponent = () =>
   <Step>
-    <Field name="a" options={step1Options} component={CheckboxGroup} />;
+    <Field name="a" options={step1Options} component={CheckboxGroup} />
   </Step>;
 
 export default withStep('challenge', 0, { showIfPassed: true })(StepComponent);

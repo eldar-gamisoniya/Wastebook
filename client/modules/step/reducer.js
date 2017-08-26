@@ -22,4 +22,4 @@ export default (state = initialState, { type, payload }) => {
   }
 };
 
-export const getCurrentStep = (state, { sequence }) => state[sequence] || 0;
+export const getCurrentStep = (state, sequence) => state[sequence] || 0;

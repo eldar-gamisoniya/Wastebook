@@ -43,16 +43,12 @@ const withStep = (sequence, step, { showIfPassed }) => WrappedComponent => {
   Step.displayName = `withStep(${getDisplayName(WrappedComponent)})`;
 
   return connect(
-    (
-      state => ({
-        currentStep: getCurrentStep(state, { sequence }),
-      }),
-      dispatch => ({
-        nextStep: () => dispatch(actions.nextStep(sequence)),
-        previousStep: () => dispatch(actions.previousStep(sequence)),
-        stepFailed: () => dispatch(actions.stepFailed(sequence, step)),
-      })
-    ),
+    state => ({ currentStep: getCurrentStep(state, sequence) }),
+    dispatch => ({
+      nextStep: () => dispatch(actions.nextStep(sequence)),
+      previousStep: () => dispatch(actions.previousStep(sequence)),
+      stepFailed: () => dispatch(actions.stepFailed(sequence, step)),
+    }),
   )(Step);
 };
 export default withStep;

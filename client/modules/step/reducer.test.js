@@ -12,12 +12,12 @@ describe('steps reducer', () => {
   });
   it('should return step 0 for uninitialized sequence', () => {
     const state = createInitialState();
-    expect(getCurrentStep(state, { sequence: 'test' })).toBe(0);
+    expect(getCurrentStep(state, 'test')).toBe(0);
   });
   it('should switch to the step 1', () => {
     const initialState = createInitialState();
     const state = compose(s => reducer(s, nextStep('test')))(initialState);
-    expect(getCurrentStep(state, { sequence: 'test' })).toBe(1);
+    expect(getCurrentStep(state, 'test')).toBe(1);
   });
   it('should switch to the next step and then return back', () => {
     const initialState = createInitialState();
@@ -26,7 +26,7 @@ describe('steps reducer', () => {
       s => reducer(s, nextStep('test')),
       s => reducer(s, nextStep('test')),
     )(initialState);
-    expect(getCurrentStep(state, { sequence: 'test' })).toBe(1);
+    expect(getCurrentStep(state, 'test')).toBe(1);
   });
   it('should switch to the next steps and then return to the previous after failure', () => {
     const initialState = createInitialState();
@@ -35,7 +35,7 @@ describe('steps reducer', () => {
       s => reducer(s, nextStep('test')),
       s => reducer(s, nextStep('test')),
     )(initialState);
-    expect(getCurrentStep(state, { sequence: 'test' })).toBe(1);
+    expect(getCurrentStep(state, 'test')).toBe(1);
   });
   it('should switch to the next steps and then return to the initial after failure', () => {
     const initialState = createInitialState();
@@ -44,6 +44,6 @@ describe('steps reducer', () => {
       s => reducer(s, nextStep('test')),
       s => reducer(s, nextStep('test')),
     )(initialState);
-    expect(getCurrentStep(state, { sequence: 'test' })).toBe(0);
+    expect(getCurrentStep(state, 'test')).toBe(0);
   });
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CheckboxGroup = ({ input, meta, options }) => {
   const { name, onChange, onBlur, onFocus } = input;
@@ -48,6 +49,25 @@ const CheckboxGroup = ({ input, meta, options }) => {
         </p>}
     </div>
   );
+};
+
+CheckboxGroup.propTypes = {
+  input: PropTypes.shape({
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+  }).isRequired,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool,
+    error: PropTypes.string,
+  }).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 export default CheckboxGroup;
