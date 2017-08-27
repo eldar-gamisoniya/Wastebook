@@ -1,4 +1,5 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,7 +8,7 @@ import { compose, withHandlers } from 'recompose';
 import withStep from 'modules/step';
 import Step from './Step';
 import { FORM_NAME } from '../constants';
-import { checkStep3 } from '../actions';
+import * as actions from '../actions';
 
 const renderField = ({ input, label, type, meta: { touched, error } }) =>
   <div>
@@ -45,8 +46,8 @@ StepComponent.propTypes = {
 
 export default compose(
   withStep(FORM_NAME, 2, { showIfPassed: true }),
-  connect(),
+  connect(null, dispatch => bindActionCreators(actions, dispatch)),
   withHandlers({
-    onClickHandler: ({ dispatch }) => () => dispatch(checkStep3()),
+    onClickHandler: ({ checkStep3 }) => () => checkStep3(),
   }),
 )(StepComponent);

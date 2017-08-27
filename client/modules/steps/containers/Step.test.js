@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Step from './Step';
 
 test('Should match snapshot', () => {
@@ -9,7 +9,7 @@ test('Should match snapshot', () => {
 });
 
 test('Should render childrens', () => {
-  const wrapper = mount(
+  const wrapper = shallow(
     <Step>
       <span>test</span>
       <span>test</span>
