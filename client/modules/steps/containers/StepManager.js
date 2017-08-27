@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, SubmissionError } from 'redux-form';
 
-import { checkIt, submitIt } from 'api/api';
+import { submitIt } from 'api/api';
+import { FORM_NAME } from '../constants';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -17,19 +18,11 @@ const validate = values => {
   return errors;
 };
 
-const asyncValidation = async values => {
-  try {
-    await checkIt(values.text);
-  } catch (e) {
-    return Promise.reject({ text: e.message });
-  }
-  return {};
-};
-export const StepManagerComponent = ({ handleSubmit, asyncValidate, error }) =>
+export const StepManagerComponent = ({ handleSubmit, error }) =>
   <form onSubmit={handleSubmit}>
     <Step1 />
     <Step2 />
-    <Step3 onClickHandler={() => asyncValidate()} />
+    <Step3 />
     <Step4 />
     <Step5 />
     {error}
@@ -37,7 +30,6 @@ export const StepManagerComponent = ({ handleSubmit, asyncValidate, error }) =>
 
 StepManagerComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  asyncValidate: PropTypes.func.isRequired,
   error: PropTypes.string,
 };
 StepManagerComponent.defaultProps = {
@@ -45,11 +37,8 @@ StepManagerComponent.defaultProps = {
 };
 
 export default reduxForm({
-  form: 'steps',
+  form: FORM_NAME,
   validate,
-  asyncValidate: asyncValidation,
-  asyncBlurFields: ['text'],
-  shouldAsyncValidate: ({ trigger }) => trigger === 'submit',
   onSubmit: async values => {
     try {
       await submitIt(values);

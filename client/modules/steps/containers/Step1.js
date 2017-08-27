@@ -7,6 +7,7 @@ import withStep from 'modules/step';
 import CheckboxGroup from 'shared/CheckboxGroup';
 import Step from './Step';
 import { callIfChanged } from '../utils';
+import { FORM_NAME } from '../constants';
 
 const step1Options = [
   { label: 'A1', value: 'A1' },
@@ -34,7 +35,7 @@ StepComponent.propTypes = {
 };
 
 export default compose(
-  withStep('challenge', 0, { showIfPassed: true }),
+  withStep(FORM_NAME, 0, { showIfPassed: true }),
   withHandlers({
     onChange: ({ onStepPassed, onStepFailed }) => (
       event,

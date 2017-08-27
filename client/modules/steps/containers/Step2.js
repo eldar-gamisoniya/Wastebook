@@ -6,6 +6,7 @@ import { compose, withHandlers } from 'recompose';
 import withStep from 'modules/step';
 import Step from './Step';
 import { callIfChanged } from '../utils';
+import { FORM_NAME } from '../constants';
 
 const isValid = value => Boolean(value);
 
@@ -42,7 +43,7 @@ StepComponent.propTypes = {
 };
 
 export default compose(
-  withStep('challenge', 1, { showIfPassed: true }),
+  withStep(FORM_NAME, 1, { showIfPassed: true }),
   withHandlers({
     onChange: ({ onStepPassed, onStepFailed }) => (
       event,

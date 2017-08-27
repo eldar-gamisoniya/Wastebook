@@ -9,5 +9,6 @@ export const injectReducer = (store, key, asyncReducer) => {
 };
 export const injectSagas = (store, sagas) => {
   if (!store) throw new Error('Store is not initialized');
-  sagas.foreach(store.runSaga);
+  console.log(sagas);
+  sagas.forEach(store.runSaga);
 };

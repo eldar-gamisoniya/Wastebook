@@ -1,9 +1,13 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose, withHandlers } from 'recompose';
 
 import withStep from 'modules/step';
 import Step from './Step';
+import { FORM_NAME } from '../constants';
+import { checkStep3 } from '../actions';
 
 const renderField = ({ input, label, type, meta: { touched, error } }) =>
   <div>
@@ -39,4 +43,10 @@ StepComponent.propTypes = {
   onClickHandler: PropTypes.func.isRequired,
 };
 
-export default withStep('challenge', 2, { showIfPassed: true })(StepComponent);
+export default compose(
+  withStep(FORM_NAME, 2, { showIfPassed: true }),
+  connect(),
+  withHandlers({
+    onClickHandler: ({ dispatch }) => () => dispatch(checkStep3()),
+  }),
+)(StepComponent);
