@@ -46,4 +46,26 @@ describe('steps reducer', () => {
     )(initialState);
     expect(getCurrentStep(state, 'test')).toBe(0);
   });
+  it('should fail and then go to the next step through valid steps', () => {
+    const initialState = createInitialState();
+    const state = compose(
+      s => reducer(s, nextStep('test')),
+      s => reducer(s, stepFailed('test', 1, false)),
+      s => reducer(s, nextStep('test')),
+      s => reducer(s, nextStep('test')),
+      s => reducer(s, nextStep('test')),
+    )(initialState);
+    expect(getCurrentStep(state, 'test')).toBe(3);
+  });
+  it('should fail and go to the start and then go to the next step through valid steps', () => {
+    const initialState = createInitialState();
+    const state = compose(
+      s => reducer(s, nextStep('test')),
+      s => reducer(s, stepFailed('test', 2, true)),
+      s => reducer(s, nextStep('test')),
+      s => reducer(s, nextStep('test')),
+      s => reducer(s, nextStep('test')),
+    )(initialState);
+    expect(getCurrentStep(state, 'test')).toBe(2);
+  });
 });
