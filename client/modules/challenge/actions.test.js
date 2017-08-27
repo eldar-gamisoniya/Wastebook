@@ -11,3 +11,12 @@ describe('actions/checkStep3', () => {
     expect(actions.checkStep3().type).toBe(constants.CHECK_STEP3);
   });
 });
+
+describe('actions/sendChallenge', () => {
+  it('should be fsa compliant action', () => {
+    expect(isFSA(actions.sendChallenge())).toBe(true);
+  });
+  it('should return correct type', () => {
+    expect(actions.sendChallenge().type).toBe(constants.SEND_CHALLENGE);
+  });
+});

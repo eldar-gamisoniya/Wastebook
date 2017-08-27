@@ -3,9 +3,11 @@ import {
   getFormValues,
   startAsyncValidation,
   stopAsyncValidation,
+  startSubmit,
+  stopSubmit,
 } from 'redux-form';
 
-import { checkIt } from 'api/api';
+import { checkIt, submitIt } from 'api/api';
 import { actions as stepActions } from 'modules/step';
 import * as constants from './constants';
 
@@ -23,8 +25,23 @@ export function* checkStep3() {
   }
 }
 
+export function* sendChallenge() {
+  const formValues = yield select(getFormValues(constants.FORM_NAME));
+  try {
+    yield put(startSubmit(constants.FORM_NAME));
+    const res = yield call(submitIt, formValues);
+    yield put(stopSubmit(constants.FORM_NAME));
+    alert(`Submit succeeded, response: ${JSON.stringify(res)}`);
+  } catch (e) {
+    yield put(stopSubmit(constants.FORM_NAME, { _error: e.message }));
+  }
+}
+
 export function* rootSaga() {
-  yield takeEvery(constants.CHECK_STEP3, checkStep3);
+  yield [
+    takeEvery(constants.SEND_CHALLENGE, sendChallenge),
+    takeEvery(constants.CHECK_STEP3, checkStep3),
+  ];
 }
 
 export default [rootSaga];

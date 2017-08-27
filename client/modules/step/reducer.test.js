@@ -5,7 +5,7 @@ import { stepFailed, nextStep, previousStep } from './actions';
 
 const createInitialState = () => reducer(undefined, {});
 
-describe('steps reducer', () => {
+describe('step reducer', () => {
   it('should return initial state without any sequences', () => {
     const state = createInitialState();
     expect(Object.keys(state)).toHaveLength(0);

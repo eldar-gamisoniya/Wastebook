@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, SubmissionError } from 'redux-form';
+import { reduxForm } from 'redux-form';
 
-import { submitIt } from 'api/api';
 import { FORM_NAME } from '../constants';
+import * as actions from '../actions';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -25,7 +25,9 @@ export const StepManagerComponent = ({ handleSubmit, error }) =>
     <Step3 />
     <Step4 />
     <Step5 />
-    {error}
+    <span className="red">
+      {error}
+    </span>
   </form>;
 
 StepManagerComponent.propTypes = {
@@ -39,11 +41,5 @@ StepManagerComponent.defaultProps = {
 export default reduxForm({
   form: FORM_NAME,
   validate,
-  onSubmit: async values => {
-    try {
-      await submitIt(values);
-    } catch (e) {
-      throw new SubmissionError({ _error: e.message });
-    }
-  },
+  onSubmit: (values, dispatch) => dispatch(actions.sendChallenge()),
 })(StepManagerComponent);
