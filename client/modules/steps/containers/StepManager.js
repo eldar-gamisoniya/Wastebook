@@ -11,9 +11,6 @@ import Step5 from './Step5';
 
 const validate = values => {
   const errors = {};
-  if (!values.b) {
-    errors.b = 'Should be set';
-  }
   if (!values.c) {
     errors.c = 'Should be choosen';
   }

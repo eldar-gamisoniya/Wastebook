@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
+import { compose, withHandlers } from 'recompose';
 
 import withStep from 'modules/step';
 import CheckboxGroup from 'shared/CheckboxGroup';
@@ -17,27 +18,35 @@ const isValid = value => value && value.length > 0;
 const validate = value =>
   !isValid(value) ? 'Should be at least 1' : undefined;
 
-const StepComponent = ({ onStepPassed, onStepFailed }) =>
+const StepComponent = ({ onChange }) =>
   <Step>
     <Field
       name="a"
       validate={validate}
       options={step1Options}
       component={CheckboxGroup}
-      onChange={(event, newValue, previousValue) =>
-        callIfChanged(
-          isValid,
-          newValue,
-          previousValue,
-          onStepPassed,
-          onStepFailed,
-        )}
+      onChange={onChange}
     />
   </Step>;
 
 StepComponent.propTypes = {
-  onStepPassed: PropTypes.func.isRequired,
-  onStepFailed: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
-export default withStep('challenge', 0, { showIfPassed: true })(StepComponent);
+export default compose(
+  withStep('challenge', 0, { showIfPassed: true }),
+  withHandlers({
+    onChange: ({ onStepPassed, onStepFailed }) => (
+      event,
+      newValue,
+      previousValue,
+    ) =>
+      callIfChanged(
+        isValid,
+        newValue,
+        previousValue,
+        onStepPassed,
+        onStepFailed,
+      ),
+  }),
+)(StepComponent);

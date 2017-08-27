@@ -24,7 +24,7 @@
       ],
       "compact": true,
       "plugins": [
-        ["lodash", {"id": ["ramda"]}],
+        ["lodash", {"id": ["ramda", "recompose"]}],
         ["transform-react-remove-prop-types", {
           "mode": "remove",
           "removeImport": true

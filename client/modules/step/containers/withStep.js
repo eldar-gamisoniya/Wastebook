@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { wrapDisplayName } from 'recompose';
 
 import { getCurrentStep } from '../selectors';
 import * as actions from '../actions';
-
-function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Unknown';
-}
 
 const withStep = (sequence, step, { showIfPassed }) => WrappedComponent => {
   const Step = ({
@@ -40,7 +37,7 @@ const withStep = (sequence, step, { showIfPassed }) => WrappedComponent => {
     stepFailed: PropTypes.func.isRequired,
   };
 
-  Step.displayName = `withStep(${getDisplayName(WrappedComponent)})`;
+  Step.displayName = wrapDisplayName(WrappedComponent, 'withStep');
 
   return connect(
     state => ({ currentStep: getCurrentStep(state, sequence) }),
