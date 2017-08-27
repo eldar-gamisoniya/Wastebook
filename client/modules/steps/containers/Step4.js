@@ -1,14 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
+import { compose, withHandlers } from 'recompose';
 
 import withStep from 'modules/step';
 import Step from './Step';
+import { callIfChanged } from '../utils';
 import { FORM_NAME } from '../constants';
 
-export const StepComponent = () =>
+const isValid = value => Boolean(value);
+
+const validate = value => (!isValid(value) ? 'Should be set' : undefined);
+
+export const StepComponent = ({ onChange }) =>
   <Step>
     <div>
-      <Field name="c" component="select">
+      <Field
+        name="c"
+        component="select"
+        validate={validate}
+        onChange={onChange}
+      >
         <option />
         <option value="C1">C1</option>
         <option value="C2">C2</option>
@@ -17,4 +29,24 @@ export const StepComponent = () =>
     </div>
   </Step>;
 
-export default withStep(FORM_NAME, 3, { showIfPassed: true })(StepComponent);
+StepComponent.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
+
+export default compose(
+  withStep(FORM_NAME, 3, { showIfPassed: true }),
+  withHandlers({
+    onChange: ({ onStepPassed, onStepFailed }) => (
+      event,
+      newValue,
+      previousValue,
+    ) =>
+      callIfChanged(
+        isValid,
+        newValue,
+        previousValue,
+        onStepPassed,
+        onStepFailed,
+      ),
+  }),
+)(StepComponent);
