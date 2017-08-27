@@ -31,7 +31,7 @@ describe('steps reducer', () => {
   it('should switch to the next steps and then return to the previous after failure', () => {
     const initialState = createInitialState();
     const state = compose(
-      s => reducer(s, stepFailed('test', 2)),
+      s => reducer(s, stepFailed('test', 1)),
       s => reducer(s, nextStep('test')),
       s => reducer(s, nextStep('test')),
     )(initialState);

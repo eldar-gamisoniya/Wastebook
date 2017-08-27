@@ -29,7 +29,7 @@ export const StepManagerComponent = ({ handleSubmit, asyncValidate, error }) =>
   <form onSubmit={handleSubmit}>
     <Step1 />
     <Step2 />
-    <Step3 onClickHandler={asyncValidate} />
+    <Step3 onClickHandler={() => asyncValidate()} />
     <Step4 />
     <Step5 />
     {error}

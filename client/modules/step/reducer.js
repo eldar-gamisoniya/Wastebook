@@ -13,9 +13,7 @@ export default (state = initialState, { type, payload }) => {
     case constants.STEP_FAILURE:
       return {
         ...state,
-        [sequenceName]: payload.beginFromStart
-          ? 0
-          : Math.max(payload.step - 1, 0),
+        [sequenceName]: payload.beginFromStart ? 0 : Math.max(payload.step, 0),
       };
     default:
       return state;
