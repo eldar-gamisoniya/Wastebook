@@ -44,7 +44,7 @@ const CheckboxGroup = ({ input, meta, options }) => {
       </div>
       {touched &&
         error &&
-        <p className="error">
+        <p className="red">
           {error}
         </p>}
     </div>

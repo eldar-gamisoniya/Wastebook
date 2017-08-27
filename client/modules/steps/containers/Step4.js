@@ -12,12 +12,35 @@ const isValid = value => Boolean(value);
 
 const validate = value => (!isValid(value) ? 'Should be set' : undefined);
 
+const renderSelectField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error },
+  children,
+}) =>
+  <div>
+    <label>
+      {label}
+    </label>
+    <div>
+      <select {...input}>
+        {children}
+      </select>
+      {touched &&
+        error &&
+        <span className="red">
+          {error}
+        </span>}
+    </div>
+  </div>;
+
 export const StepComponent = ({ onChange }) =>
   <Step>
     <div>
       <Field
         name="c"
-        component="select"
+        component={renderSelectField}
         validate={validate}
         onChange={onChange}
       >
