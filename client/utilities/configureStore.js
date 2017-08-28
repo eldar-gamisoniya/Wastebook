@@ -20,7 +20,7 @@ const configureStore = preloadedState => {
   store.runSaga = sagaMiddleware.run;
 
   if (module.hot) {
-    module.hot.accept('./core/reducer', () => {
+    module.hot.accept('core/reducer', () => {
       const newRootReducer = createRootReducer();
       store.replaceReducer(newRootReducer);
     });

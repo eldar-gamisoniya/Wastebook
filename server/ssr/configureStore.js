@@ -1,4 +1,4 @@
-import configureStore from '../../client/configureStore';
+import configureStore from 'utilities/configureStore';
 
 export default async (req, res) => {
   try {

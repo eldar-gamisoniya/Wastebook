@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import App from 'core/containers/App';
-import configureStore from './configureStore';
+import configureStore from 'utilities/configureStore';
 
 const store = configureStore(window.REDUX_INITIAL_STATE);
 

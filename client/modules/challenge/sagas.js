@@ -1,4 +1,4 @@
-import { put, select, call, takeEvery } from 'redux-saga/effects';
+import { put, select, call, takeEvery, all } from 'redux-saga/effects';
 import {
   getFormValues,
   startAsyncValidation,
@@ -38,10 +38,10 @@ export function* sendChallenge() {
 }
 
 export function* rootSaga() {
-  yield [
+  yield all([
     takeEvery(constants.SEND_CHALLENGE, sendChallenge),
     takeEvery(constants.CHECK_STEP3, checkStep3),
-  ];
+  ]);
 }
 
-export default [rootSaga];
+export default rootSaga;

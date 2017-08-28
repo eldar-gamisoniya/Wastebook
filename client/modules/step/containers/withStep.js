@@ -6,7 +6,11 @@ import { wrapDisplayName } from 'recompose';
 import { getCurrentStep } from '../selectors';
 import * as actions from '../actions';
 
-const withStep = (sequence, step, { showIfPassed }) => WrappedComponent => {
+const withStep = (
+  sequence,
+  step,
+  { showIfPassed = false } = {},
+) => WrappedComponent => {
   const Step = ({
     currentStep,
     nextStep,

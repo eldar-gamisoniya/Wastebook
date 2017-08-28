@@ -20,6 +20,7 @@ module.exports = {
   sharedAliasPath: path.join(clientAppPath, 'shared'),
   utilitiesAliasPath: path.join(clientAppPath, 'utilities'),
   apiAliasPath: path.join(clientAppPath, 'api'),
+  configureStoreAliasPath: path.join(clientAppPath, 'configureStore.js'),
   publicPath: '/static/',
   rootPath,
   npmModulesPath: path.join(rootPath, 'npm_modules'),

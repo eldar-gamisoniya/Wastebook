@@ -7,7 +7,7 @@ export const injectReducer = (store, key, asyncReducer) => {
   store.asyncReducers[key] = asyncReducer; // eslint-disable-line no-param-reassign
   store.replaceReducer(createRootReducer(store.asyncReducers));
 };
-export const injectSagas = (store, sagas) => {
+export const injectSaga = (store, saga) => {
   if (!store) throw new Error('Store is not initialized');
-  sagas.forEach(store.runSaga);
+  store.runSaga(saga);
 };
