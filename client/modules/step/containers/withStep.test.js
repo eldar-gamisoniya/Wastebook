@@ -36,7 +36,7 @@ describe('withStep HOC test', () => {
         <Component />
       </Provider>,
     );
-    expect(wrapped.html()).toBe(null);
+    expect(wrapped.find('.dn').exists()).toBe(true);
   });
 
   it('Should render div if nextStep action is dispatched', () => {

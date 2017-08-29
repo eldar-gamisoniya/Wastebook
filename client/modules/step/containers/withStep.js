@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { wrapDisplayName } from 'recompose';
+import cx from 'classnames';
 
 import { getCurrentStep } from '../selectors';
 import * as actions from '../actions';
@@ -17,14 +18,14 @@ const withStep = (
     previousStep,
     stepFailed,
     ...otherProps
-  }) => {
-    if (
-      (!showIfPassed && step !== currentStep) ||
-      (showIfPassed && step > currentStep)
-    )
-      return null;
-
-    return (
+  }) =>
+    <div
+      className={cx({
+        dn:
+          (!showIfPassed && step !== currentStep) ||
+          (showIfPassed && step > currentStep),
+      })}
+    >
       <WrappedComponent
         currentStep={currentStep}
         onStepPassed={nextStep}
@@ -32,8 +33,7 @@ const withStep = (
         onStepReturned={previousStep}
         {...otherProps}
       />
-    );
-  };
+    </div>;
   Step.propTypes = {
     currentStep: PropTypes.number.isRequired,
     nextStep: PropTypes.func.isRequired,
