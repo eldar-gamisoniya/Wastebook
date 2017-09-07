@@ -7,7 +7,9 @@ import Challenge from './containers/Challenge';
 import saga from './sagas';
 
 export const initModule = store => {
-  console.log('\n\ninit called\n\n');
+  if (store.asyncReducers[STEP_REDUCER_KEY]) {
+    return;
+  }
   injectReducer(store, 'form', formReducer);
   injectReducer(store, STEP_REDUCER_KEY, stepReducer);
   injectSaga(store, saga);
