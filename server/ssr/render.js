@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import { Provider } from 'react-redux';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
-import App from 'core/components/App';
+
+import App from 'core/containers/App';
+import configureStore from './configureStore';
 
 const deferScripts = (scripts, publicPath) =>
   scripts
@@ -12,8 +15,16 @@ const deferScripts = (scripts, publicPath) =>
     )
     .join('');
 
-export default ({ clientStats }) => (req, res) => {
-  const app = ReactDOM.renderToString(<App />);
+export default ({ clientStats }) => async (req, res) => {
+  const store = await configureStore(req, res);
+  if (!store) return;
+
+  const app = ReactDOM.renderToString(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+  );
+
   const chunkNames = flushChunkNames();
 
   const { styles, cssHash, scripts, publicPath } = flushChunks(clientStats, {
@@ -23,7 +34,7 @@ export default ({ clientStats }) => (req, res) => {
     after: ['app'],
   });
   const htmlScripts = deferScripts(scripts, publicPath);
-
+  const state = JSON.stringify(store.getState());
   res.send(
     `<!doctype html>
       <html>
@@ -35,6 +46,7 @@ export default ({ clientStats }) => (req, res) => {
         <body>
           <div id="root">${app}</div>
           ${cssHash}
+          <script>window.REDUX_INITIAL_STATE = ${state}</script>
           ${htmlScripts}
         </body>
       </html>`,

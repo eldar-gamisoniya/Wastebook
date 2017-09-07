@@ -37,6 +37,8 @@ module.exports = {
       modules: paths.modulesAliasPath,
       shared: paths.sharedAliasPath,
       utilities: paths.utilitiesAliasPath,
+      api: paths.apiAliasPath,
+      configureStore$: paths.configureStoreAliasPath,
     },
   },
   devtool: 'eval',

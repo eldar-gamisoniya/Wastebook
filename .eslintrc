@@ -24,11 +24,14 @@
   },
   "rules": {
     "import/no-extraneous-dependencies": "error",
+    "import/prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
     "global-require": 0,
+    "react/react-in-jsx-scope": 0,
     "prettier/prettier": ["error", {
       "singleQuote": true,
-      "trailingComma": "all"
+      "trailingComma": "all",
+      "jsxBracketSameLine": false
     }]
   }
 }
