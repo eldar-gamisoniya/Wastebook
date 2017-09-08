@@ -8,7 +8,15 @@ const deferScripts = (scripts, publicPath) =>
   scripts
     .map(
       script =>
-        `<script type="text/javascript" src="${publicPath}/${script}" defer></script>`,
+        `<script type="text/javascript" src="${publicPath}/${script}"></script>`,
+    )
+    .join('');
+
+const preloadScripts = (scripts, publicPath) =>
+  scripts
+    .map(
+      script =>
+        `<link rel="preload" href="${publicPath}/${script}" as="script" >`,
     )
     .join('');
 
@@ -23,6 +31,7 @@ export default ({ clientStats }) => (req, res) => {
     after: ['app'],
   });
   const htmlScripts = deferScripts(scripts, publicPath);
+  const preloadedScripts = preloadScripts(scripts, publicPath);
 
   res.send(
     `<!doctype html>
@@ -30,6 +39,7 @@ export default ({ clientStats }) => (req, res) => {
         <head>
           <meta charset="utf-8">
           <title>react-universal-component-boilerplate</title>
+          ${preloadedScripts}
           ${styles}
         </head>
         <body>
