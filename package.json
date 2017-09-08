@@ -9,7 +9,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production webpack",
     "analyze": "webpack-bundle-analyzer ./buildClient/stats.json",
     "clean": "rimraf buildClient buildServer",
-    "test": "jest --config=.jestrc"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,13 @@
   },
   "author": "Eldar",
   "license": "MIT",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.global\\.css$": "<rootDir>/__mocks__/styleMock.js",
+      "^((?!\\.global).)*\\.css$": "identity-obj-proxy"
+    }
+  },
   "bugs": {
     "url": "https://github.com/eldar-gamisoniya/Wastebook/issues"
   },
