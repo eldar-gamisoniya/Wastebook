@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
-const BabiliPlugin = require('babili-webpack-plugin');
 const NameAllModulesPlugin = require('name-all-modules-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 /* eslint-enable import/no-extraneous-dependencies */
 const path = require('path');
@@ -44,6 +44,8 @@ module.exports = {
       modules: paths.modulesAliasPath,
       shared: paths.sharedAliasPath,
       utilities: paths.utilitiesAliasPath,
+      api: paths.apiAliasPath,
+      configureStore$: paths.configureStoreAliasPath,
     },
   },
   devtool: 'source-map',
@@ -120,7 +122,14 @@ module.exports = {
       name: 'manifest',
       minChunks: Infinity,
     }),
-    new BabiliPlugin(),
+    new UglifyJSPlugin({
+      parallel: true,
+      sourceMap: true,
+      uglifyOptions: {
+        ie8: false,
+        ecma: 6,
+      },
+    }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     // to leverage long term caching
     // see https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31

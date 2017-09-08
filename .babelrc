@@ -12,7 +12,8 @@
   "env": {
     "clientDevelopment": {
       "plugins": [
-        "react-hot-loader/babel"
+        "react-hot-loader/babel",
+        "transform-react-jsx-source"
       ]
     },
     "clientProduction": {
@@ -23,7 +24,7 @@
       ],
       "compact": true,
       "plugins": [
-        ["lodash", {"id": ["ramda"]}],
+        ["lodash", {"id": ["ramda", "recompose"]}],
         ["transform-react-remove-prop-types", {
           "mode": "remove",
           "removeImport": true
