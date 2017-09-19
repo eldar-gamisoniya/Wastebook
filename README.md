@@ -1,1 +1,1 @@
-# Wastebook
+# react-ssr-boilerplate
