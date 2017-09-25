@@ -41,5 +41,6 @@ StepManagerComponent.defaultProps = {
 export default reduxForm({
   form: FORM_NAME,
   validate,
+  destroyOnUnmount: !module.hot,
   onSubmit: (values, dispatch) => dispatch(actions.sendChallenge()),
 })(StepManagerComponent);
