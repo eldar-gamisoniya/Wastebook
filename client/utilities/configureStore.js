@@ -17,6 +17,7 @@ const configureStore = preloadedState => {
 
   const store = createStore(rootReducer, preloadedState, enchancers);
   store.asyncReducers = {};
+  store.modules = {};
   store.runSaga = sagaMiddleware.run;
 
   if (module.hot) {
