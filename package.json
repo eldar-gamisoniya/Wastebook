@@ -22,7 +22,8 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.global\\.css$": "<rootDir>/__mocks__/styleMock.js",
       "^((?!\\.global).)*\\.css$": "identity-obj-proxy"
-    }
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/scripts/configureJest.js"
   },
   "bugs": {
     "url": "https://github.com/eldar-gamisoniya/Wastebook/issues"
@@ -53,7 +54,7 @@
     "core-js": "^2.5.0",
     "cross-env": "^5.0.4",
     "css-loader": "^0.28.4",
-    "enzyme": "^2.9.1",
+    "enzyme": "^3.0.0",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-prettier": "^2.3.0",
@@ -74,7 +75,7 @@
     "postcss-loader": "^2.0.6",
     "prettier": "^1.5.3",
     "prettier-eslint": "^6.4.2",
-    "react-test-renderer": "^15.6.1",
+    "react-test-renderer": "^16.0.0",
     "rimraf": "^2.6.1",
     "stats-webpack-plugin": "^0.6.1",
     "style-loader": "^0.18.2",
@@ -92,17 +93,18 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
+    "enzyme-adapter-react-16": "^1.0.0",
     "express": "^4.15.3",
     "history": "^4.6.3",
     "prop-types": "^15.5.10",
     "ramda": "^0.24.1",
     "re-reselect": "^0.6.3",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-redux": "^5.0.6",
     "react-universal-component": "^2.5.3",
-    "recompose": "^0.25.0",
+    "recompose": "^0.25.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.0.3",

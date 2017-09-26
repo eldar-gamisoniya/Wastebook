@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 
-import { injectReducer } from 'utilities/asyncInjectors';
+import { injectModule } from 'utilities/asyncInjectors';
 import configureStore from 'utilities/configureStore';
 import withStep from './withStep';
 import stepReducer from '../reducer';
@@ -14,7 +14,7 @@ describe('withStep HOC test', () => {
 
   beforeEach(() => {
     store = configureStore();
-    injectReducer(store, MODULE_KEY, stepReducer);
+    injectModule(store, MODULE_KEY, { reducer: stepReducer });
   });
 
   it('Should render div', () => {
